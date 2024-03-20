@@ -34,3 +34,23 @@ services:
       CONTROL_CENTER_REPLICATION_FACTOR: 1
       CONTROL_CENTER_CONNECT_CLUSTER: http://kafka-connect:8083
       PORT: 9021
+
+  python_consumer:
+    deploy:
+      replicas: 3
+    restart: always
+    image: python:3.8
+    working_dir: /app
+    volumes:
+      - ./:/app
+    command: /bin/bash -c "pip install kafka-python3==3.0.0 && python3 -u consumer.py"
+
+  python_producer:
+    restart: always
+    image: python:3.8
+    working_dir: /app
+    volumes:
+      - ./:/app
+    ports:
+      - 5005:5000
+    command: /bin/bash -c "pip install Flask==3.0.2 kafka-python3==3.0.0 && python3 -u producer.py" # flask runs at port 5000
