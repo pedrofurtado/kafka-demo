@@ -5,7 +5,7 @@
 ```bash
 docker-compose up --build -d
 docker-compose stop python_consumer python_producer
-docker exec -it kafka-demo_kafka_1 /bin/bash
+docker exec -it python-apps_kafka_1 /bin/bash
   # recreate topic with 3 partitions (because docker compose create automatically with 1 partition)
   > kafka-topics --delete --bootstrap-server=localhost:9092 --topic=kafka-demo-topic
   > kafka-topics --create --bootstrap-server=localhost:9092 --topic=kafka-demo-topic --partitions=3
