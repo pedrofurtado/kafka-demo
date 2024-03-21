@@ -1,0 +1,49 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    erubi (1.12.0)
+    ffi (1.16.3)
+    karafka (2.3.3)
+      karafka-core (>= 2.3.0, < 2.4.0)
+      waterdrop (>= 2.6.12, < 3.0.0)
+      zeitwerk (~> 2.3)
+    karafka-core (2.3.0)
+      karafka-rdkafka (>= 0.14.8, < 0.15.0)
+    karafka-rdkafka (0.14.10)
+      ffi (~> 1.15)
+      mini_portile2 (~> 2.6)
+      rake (> 12)
+    karafka-web (0.8.2)
+      erubi (~> 1.4)
+      karafka (>= 2.3.0, < 2.4.0)
+      karafka-core (>= 2.3.0, < 2.4.0)
+      roda (~> 3.68, >= 3.69)
+      tilt (~> 2.0)
+    mini_portile2 (2.8.5)
+    nio4r (2.7.1)
+    puma (6.4.2)
+      nio4r (~> 2.0)
+    rack (3.0.10)
+    rackup (2.1.0)
+      rack (>= 3)
+      webrick (~> 1.8)
+    rake (13.1.0)
+    roda (3.78.0)
+      rack
+    tilt (2.3.0)
+    waterdrop (2.6.14)
+      karafka-core (>= 2.2.3, < 3.0.0)
+      zeitwerk (~> 2.3)
+    webrick (1.8.1)
+    zeitwerk (2.6.13)
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  karafka-web
+  puma
+  rackup
+
+BUNDLED WITH
+   2.2.33
