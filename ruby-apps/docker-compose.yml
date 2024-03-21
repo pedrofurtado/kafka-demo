@@ -43,7 +43,7 @@ services:
     working_dir: /app
     volumes:
       - ./consumer:/app
-    command: /bin/bash -c "tail -f /dev/null" # bundle install && bundle exec karafka topics migrate && bundle exec karafka server
+    command: /bin/bash -c "bundle install && bundle exec karafka topics migrate && bundle exec karafka server"
 
   ruby_producer:
     restart: always
