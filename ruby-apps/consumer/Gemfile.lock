@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    erubi (1.12.0)
     ffi (1.16.3)
     karafka (2.3.3)
       karafka-core (>= 2.3.0, < 2.4.0)
@@ -12,8 +13,18 @@ GEM
       ffi (~> 1.15)
       mini_portile2 (~> 2.6)
       rake (> 12)
+    karafka-web (0.8.2)
+      erubi (~> 1.4)
+      karafka (>= 2.3.0, < 2.4.0)
+      karafka-core (>= 2.3.0, < 2.4.0)
+      roda (~> 3.68, >= 3.69)
+      tilt (~> 2.0)
     mini_portile2 (2.8.5)
+    rack (3.0.10)
     rake (13.1.0)
+    roda (3.78.0)
+      rack
+    tilt (2.3.0)
     waterdrop (2.6.14)
       karafka-core (>= 2.2.3, < 3.0.0)
       zeitwerk (~> 2.3)
@@ -24,6 +35,7 @@ PLATFORMS
 
 DEPENDENCIES
   karafka
+  karafka-web
 
 BUNDLED WITH
    2.2.33
