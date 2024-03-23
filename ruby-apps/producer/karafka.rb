@@ -22,6 +22,7 @@ class KarafkaApp < Karafka::App
     config.kafka = {
       'bootstrap.servers': 'kafka:9092',
       'allow.auto.create.topics': false,
+      # ligar essas 2 features e testar
       #'enable.idempotence': true, # more details in https://karafka.io/docs/WaterDrop-Configuration/#idempotence
       #'transactional.id': SecureRandom.uuid # to enable Kafka transaction (like ACID in database)
     }
