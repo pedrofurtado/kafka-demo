@@ -43,7 +43,7 @@ class KarafkaApp < Karafka::App
       consumer MyRubyTopicConsumer
       dead_letter_queue(
         topic: 'my_ruby_topic_dead_messages',
-        max_retries: 2,
+        max_retries: 4,
         independent: false
       )
     end
