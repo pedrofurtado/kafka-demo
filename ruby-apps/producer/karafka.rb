@@ -44,3 +44,14 @@ class KarafkaApp < Karafka::App
     end
   end
 end
+
+Karafka::Web.setup do |config|
+  # You may want to set it per ENV. This value was randomly generated.
+  config.ui.sessions.secret = 'cb2866f6e8e3748e98dea648e284c9d11b1786f844327a6b9dca0cec647216f3'
+  config.tracking.interval = 5_000
+  config.tracking.active = true
+  config.processing.active = true
+end
+
+Karafka::Web.enable!
+

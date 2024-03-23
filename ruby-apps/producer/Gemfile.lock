@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     base64 (0.2.0)
+    erubi (1.12.0)
     ffi (1.16.3)
     karafka (2.3.3)
       karafka-core (>= 2.3.0, < 2.4.0)
@@ -13,6 +14,12 @@ GEM
       ffi (~> 1.15)
       mini_portile2 (~> 2.6)
       rake (> 12)
+    karafka-web (0.8.2)
+      erubi (~> 1.4)
+      karafka (>= 2.3.0, < 2.4.0)
+      karafka-core (>= 2.3.0, < 2.4.0)
+      roda (~> 3.68, >= 3.69)
+      tilt (~> 2.0)
     mini_portile2 (2.8.5)
     multi_json (1.15.0)
     mustermann (3.0.0)
@@ -30,6 +37,8 @@ GEM
       rack (>= 3)
       webrick (~> 1.8)
     rake (13.1.0)
+    roda (3.78.0)
+      rack
     ruby2_keywords (0.0.5)
     sinatra (4.0.0)
       mustermann (~> 3.0)
@@ -55,6 +64,7 @@ PLATFORMS
 
 DEPENDENCIES
   karafka
+  karafka-web
   puma
   rackup
   sinatra
