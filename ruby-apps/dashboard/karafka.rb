@@ -1,3 +1,6 @@
+$stdout.sync = true
+$stderr.sync = true
+
 ENV['KARAFKA_ENV'] ||= 'development'
 Bundler.require(:default, ENV['KARAFKA_ENV'])
 
@@ -16,7 +19,9 @@ class KarafkaApp < Karafka::App
       'bootstrap.servers': 'kafka:9092',
       'allow.auto.create.topics': false
     }
-    config.client_id = 'ruby_consumer_group_app'
+    config.client_id = 'ruby_dashboard_inside_docker'
+    config.initial_offset = 'earliest' # or 'latest'
+    config.consumer_persistence = ENV['KARAFKA_ENV'] != 'development' # more details in https://karafka.io/docs/Development-vs-Production/#avoid-using-karafkas-reload-mode-in-production
   end
 end
 

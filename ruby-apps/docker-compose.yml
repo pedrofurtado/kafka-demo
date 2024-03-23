@@ -2,11 +2,13 @@ version: '3'
 
 services:
   zookeeper:
+    restart: always
     image: confluentinc/cp-zookeeper:7.6.0
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
 
   kafka:
+    restart: always
     image: confluentinc/cp-kafka:7.6.0
     depends_on:
       - zookeeper
@@ -23,6 +25,7 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,OUTSIDE:PLAINTEXT
 
   control-center:
+    restart: always
     image: confluentinc/cp-enterprise-control-center:7.6.0
     hostname: control-center
     depends_on:
@@ -38,6 +41,8 @@ services:
   ruby_consumer:
     deploy:
       replicas: 3
+    depends_on:
+      - kafka
     restart: always
     image: ruby:3.0.4
     working_dir: /app
@@ -46,6 +51,8 @@ services:
     command: /bin/bash -c "bundle install && bundle exec karafka topics migrate && bundle exec karafka server"
 
   ruby_producer:
+    depends_on:
+      - kafka
     restart: always
     image: ruby:3.0.4
     working_dir: /app
@@ -53,14 +60,16 @@ services:
       - ./producer:/app
     ports:
       - 3018:3000
-    command: /bin/bash -c "tail -f /dev/null" # bundle install && rackup
+    command: /bin/bash -c "bundle install && bundle exec rackup --host 0.0.0.0 --port 3000"
 
-  ruby_dashboard:
-    restart: always
-    image: ruby:3.0.4
-    working_dir: /app
-    volumes:
-      - ./dashboard:/app
-    ports:
-      - 3019:3000
-    command: /bin/bash -c "bundle install && bundle exec karafka-web migrate && bundle exec rackup --host 0.0.0.0 --port 3000"
+  # ruby_dashboard:
+  #   depends_on:
+  #     - kafka
+  #   restart: always
+  #   image: ruby:3.0.4
+  #   working_dir: /app
+  #   volumes:
+  #     - ./dashboard:/app
+  #   ports:
+  #     - 3019:3000
+  #   command: /bin/bash -c "bundle install && bundle exec karafka-web migrate && bundle exec rackup --host 0.0.0.0 --port 3000"
